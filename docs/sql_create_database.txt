@@ -41,6 +41,36 @@ CREATE TABLE `usuarios` (
 INSERT INTO `usuarios` (`idusuario`, `nome`, `bairro`, `bairros_vizinhos`, `telefone`, `email`, `status`) VALUES
 (1, 'Paulo', '', 'Inconfidentes, Industrial, Eldorado', '33', 'gestor@gestor.com', 1);
 
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `dados_pessoais`
+--
+
+CREATE TABLE `dados_pessoais` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `nome_completo` varchar(150) NOT NULL,
+  `cpf` varchar(14) DEFAULT NULL,
+  `data_nascimento` date DEFAULT NULL,
+  `email` varchar(120) DEFAULT NULL,
+  `telefone` varchar(20) DEFAULT NULL,
+  `endereco` varchar(200) DEFAULT NULL,
+  `cidade` varchar(80) DEFAULT NULL,
+  `estado` char(2) DEFAULT NULL,
+  `status` tinyint(1) NOT NULL DEFAULT 1,
+  `observacoes` text
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Exemplo de dados para a tabela `dados_pessoais`
+--
+
+INSERT INTO `dados_pessoais`
+(`id`, `nome_completo`, `cpf`, `data_nascimento`, `email`, `telefone`, `endereco`, `cidade`, `estado`, `status`, `observacoes`)
+VALUES
+(1, 'Maria da Silva', '111.222.333-44', '1990-05-20', 'maria.silva@example.com', '(31) 91234-5678', 'Rua das Flores, 123', 'Belo Horizonte', 'MG', 1, 'Contato preferencial por e-mail'),
+(2, 'João Pereira', '555.666.777-88', '1985-03-12', 'joao.pereira@example.com', '(31) 99876-5432', 'Avenida Central, 456', 'Contagem', 'MG', 0, 'Cliente aguardando retorno');
+
 -- Indexes for table `login`
 --
 ALTER TABLE `login`
@@ -59,6 +89,13 @@ ALTER TABLE `usuarios`
   ADD PRIMARY KEY (`idusuario`);
 
 --
+-- Indexes for table `dados_pessoais`
+--
+
+ALTER TABLE `dados_pessoais`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for table `pessoas`
 --
 ALTER TABLE `pessoas`
@@ -69,6 +106,13 @@ ALTER TABLE `pessoas`
 --
 ALTER TABLE `usuarios`
   MODIFY `idusuario` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `dados_pessoais`
+--
+
+ALTER TABLE `dados_pessoais`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Limitadores para a tabela `login`
