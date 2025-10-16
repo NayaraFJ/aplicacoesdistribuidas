@@ -1,0 +1,12 @@
+ETAPAS DA ATIVIDADE 
+
+1. Criar a conta no Infinity Free
+2. Criar um domínio a sua escolha
+3. Acessar a conta do infinity Free
+4. Acessar o Painel de Controle, Acessar o menu do MYSQL e criar a base de dados
+5. Montar a tabela no PHPMyadmin, utilizando o arquivo sql_create_database que está na pasta docs
+6. Fazer o upload dos arquivos para o Infinity free na pasta HTDOCS do servidor.
+7. Atualizar o arquivo do Banco de Dados informando os valores corretos, que foram informados na aba de criação da base de dados
+8. Testar o sistema acessando o endereço no navegador
+9. O usuário é gestor@gestor.com e o password é senha 123
+http://localhost/aplicacoesdistribuidas/index.php

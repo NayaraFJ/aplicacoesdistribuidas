@@ -1,0 +1,77 @@
+CREATE TABLE `pessoas` (
+  `idpessoas` int(10) UNSIGNED NOT NULL,
+  `nome` varchar(150) DEFAULT NULL,
+  `status` int(10) UNSIGNED DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+
+CREATE TABLE `login` (
+  `usuario` int(10) UNSIGNED NOT NULL,
+  `senha` varchar(45) NOT NULL,
+  `perfil` varchar(15) DEFAULT NULL,
+  `data` date DEFAULT NULL,
+  `hora` time DEFAULT NULL,
+  `host` varchar(16) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `login`
+--
+
+INSERT INTO `login` (`usuario`, `senha`, `perfil`, `data`, `hora`, `host`) VALUES
+(1, '202cb962ac59075b964b07152d234b70', 'master', '2025-10-06', '04:42:32', '::1');
+
+-- --------------------------------------------------------
+
+CREATE TABLE `usuarios` (
+  `idusuario` int(10) UNSIGNED NOT NULL,
+  `nome` varchar(100) DEFAULT NULL,
+  `bairro` varchar(50) NOT NULL,
+  `bairros_vizinhos` varchar(150) NOT NULL,
+  `telefone` varchar(10) DEFAULT NULL,
+  `email` varchar(60) DEFAULT NULL,
+  `status` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `usuarios`
+--
+
+INSERT INTO `usuarios` (`idusuario`, `nome`, `bairro`, `bairros_vizinhos`, `telefone`, `email`, `status`) VALUES
+(1, 'Paulo', '', 'Inconfidentes, Industrial, Eldorado', '33', 'gestor@gestor.com', 1);
+
+-- Indexes for table `login`
+--
+ALTER TABLE `login`
+  ADD KEY `login_FKIndex1` (`usuario`);
+
+--
+-- Indexes for table `pessoas`
+--
+ALTER TABLE `pessoas`
+  ADD PRIMARY KEY (`idpessoas`);
+
+--
+-- Indexes for table `usuarios`
+--
+ALTER TABLE `usuarios`
+  ADD PRIMARY KEY (`idusuario`);
+
+--
+-- AUTO_INCREMENT for table `pessoas`
+--
+ALTER TABLE `pessoas`
+  MODIFY `idpessoas` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
+
+--
+-- AUTO_INCREMENT for table `usuarios`
+--
+ALTER TABLE `usuarios`
+  MODIFY `idusuario` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- Limitadores para a tabela `login`
+--
+ALTER TABLE `login`
+  ADD CONSTRAINT `login_ibfk_1` FOREIGN KEY (`usuario`) REFERENCES `usuarios` (`idusuario`) ON DELETE NO ACTION ON UPDATE NO ACTION;
