@@ -14,19 +14,12 @@ function formatarDataBR(dataISO) {
 
 function montarRegistroTabela(registro) {
     return {
-        id: registro.id,
-        nome_completo: registro.nome_completo ?? '',
-        cpf: registro.cpf ?? '',
-        data_nascimento: registro.data_nascimento,
-        data_nascimento_br: registro.data_nascimento_br || formatarDataBR(registro.data_nascimento),
+        matricula: registro.matricula,
+        nome: registro.nome ?? '',
         email: registro.email ?? '',
-        telefone: registro.telefone ?? '',
-        endereco: registro.endereco ?? '',
-        cidade: registro.cidade ?? '',
-        estado: registro.estado ?? '',
-        status: Number(registro.status),
-        status_texto: registro.status_texto || (Number(registro.status) === 1 ? 'Ativo' : 'Inativo'),
-        observacoes: registro.observacoes ?? ''
+        celular: registro.celular ?? '',
+        data_nascimento: registro.data_nascimento,
+        data_nascimento_br: registro.data_nascimento_br || formatarDataBR(registro.data_nascimento)
     };
 }
 
@@ -41,25 +34,19 @@ $(document).ready(function () {
     tabelaDados = new DataTable('#dados-pessoais', {
         ajax: 'get_dados_pessoais.php',
         columns: [
-            { data: 'id' },
-            { data: 'nome_completo' },
-            { data: 'cpf' },
-            { data: 'data_nascimento_br' },
+            { data: 'matricula' },
+            { data: 'nome' },
             { data: 'email' },
-            { data: 'telefone' },
-            { data: 'endereco' },
-            { data: 'cidade' },
-            { data: 'estado' },
-            { data: 'status_texto' },
-            { data: 'observacoes' },
+            { data: 'celular' },
+            { data: 'data_nascimento_br' },
             {
                 data: null,
                 orderable: false,
                 searchable: false,
                 render: function (data, type, row) {
                     return `
-                        <button class="btn btn-sm btn-primary edit-btn" data-id="${row.id}">Editar</button>
-                        <button class="btn btn-sm btn-danger ms-1 delete-btn" data-id="${row.id}">Excluir</button>
+                        <button class="btn btn-sm btn-primary edit-btn" data-matricula="${row.matricula}">Editar</button>
+                        <button class="btn btn-sm btn-danger ms-1 delete-btn" data-matricula="${row.matricula}">Excluir</button>
                     `;
                 }
             }
@@ -106,17 +93,11 @@ $(document).ready(function () {
         const dados = row.data();
         linhaSelecionada = row;
 
-        $('#edid').val(dados.id);
-        $('#ednome_completo').val(dados.nome_completo);
-        $('#edcpf').val(dados.cpf);
+        $('#edmatricula').val(dados.matricula);
+        $('#ednome').val(dados.nome);
         $('#eddata_nascimento').val(dados.data_nascimento);
         $('#edemail').val(dados.email);
-        $('#edtelefone').val(dados.telefone);
-        $('#edendereco').val(dados.endereco);
-        $('#edcidade').val(dados.cidade);
-        $('#edestado').val(dados.estado);
-        $('#edstatus').val(dados.status);
-        $('#edobservacoes').val(dados.observacoes);
+        $('#edcelular').val(dados.celular);
     });
 
     $('#btAlterarDados').on('click', function () {
@@ -143,24 +124,18 @@ $(document).ready(function () {
 
                 const formulario = Object.fromEntries(new URLSearchParams(dados));
                 const registroAtualizado = montarRegistroTabela({
-                    id: formulario.id,
-                    nome_completo: formulario.nome_completo,
-                    cpf: formulario.cpf,
-                    data_nascimento: formulario.data_nascimento,
+                    matricula: formulario.matricula,
+                    nome: formulario.nome,
                     email: formulario.email,
-                    telefone: formulario.telefone,
-                    endereco: formulario.endereco,
-                    cidade: formulario.cidade,
-                    estado: formulario.estado,
-                    status: formulario.status,
-                    observacoes: formulario.observacoes
+                    celular: formulario.celular,
+                    data_nascimento: formulario.data_nascimento
                 });
 
                 if (linhaSelecionada) {
                     linhaSelecionada.data(registroAtualizado).draw(false);
                 } else {
                     tabelaDados.rows().every(function () {
-                        if (this.data().id === registroAtualizado.id) {
+                        if (this.data().matricula === registroAtualizado.matricula) {
                             this.data(registroAtualizado).draw(false);
                         }
                     });
@@ -182,7 +157,7 @@ $(document).ready(function () {
             return;
         }
 
-        const payload = new URLSearchParams({ id: dados.id });
+        const payload = new URLSearchParams({ matricula: dados.matricula });
 
         fetch('delete_dados_pessoais.php', {
             method: 'POST',

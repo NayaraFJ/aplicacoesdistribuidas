@@ -57,17 +57,11 @@
       <table id="dados-pessoais" class="display table table-striped table-bordered align-middle">
               <thead class="table-light">
                   <tr>
-                      <th>ID</th>
-                      <th>Nome completo</th>
-                      <th>CPF</th>
-                      <th>Nascimento</th>
+                      <th>Matrícula</th>
+                      <th>Nome</th>
                       <th>Email</th>
-                      <th>Telefone</th>
-                      <th>Endereço</th>
-                      <th>Cidade</th>
-                      <th>UF</th>
-                      <th>Status</th>
-                      <th>Observações</th>
+                      <th>Celular</th>
+                      <th>Nascimento</th>
                       <th>Ações</th>
                   </tr>
               </thead>
@@ -84,22 +78,14 @@
           </div>
           <div class="card-body">
             <form id="form-create">
-                <input type="text" class="form-control" id="nome_completo" name="nome_completo" placeholder="Nome completo" required>
-                <input type="text" class="form-control" id="cpf" name="cpf" placeholder="CPF">
+                <label for="nome" class="form-label">Nome</label>
+                <input type="text" class="form-control" id="nome" name="nome" placeholder="Nome" required>
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="email" name="email" placeholder="Email">
+                <label for="celular" class="form-label">Celular</label>
+                <input type="text" class="form-control" id="celular" name="celular" placeholder="Celular">
                 <label for="data_nascimento" class="form-label">Data de nascimento</label>
                 <input type="date" class="form-control" id="data_nascimento" name="data_nascimento">
-                <input type="email" class="form-control" id="email" name="email" placeholder="Email">
-                <input type="text" class="form-control" id="telefone" name="telefone" placeholder="Telefone">
-                <input type="text" class="form-control" id="endereco" name="endereco" placeholder="Endereço">
-                <input type="text" class="form-control" id="cidade" name="cidade" placeholder="Cidade">
-                <input type="text" class="form-control" id="estado" name="estado" placeholder="UF" maxlength="2">
-                <label for="status" class="form-label">Status</label>
-                <select name="status" id="status" class="form-control">
-                    <option value="1">Ativo</option>
-                    <option value="0">Inativo</option>
-                </select>
-                <label for="observacoes" class="form-label">Observações</label>
-                <textarea class="form-control" id="observacoes" name="observacoes" rows="3" placeholder="Observações"></textarea>
                 <button type="button" id="btSalvarDados" class="w-100 btn btn-lg btn-outline-primary mt-2">Salvar</button>
             </form>
           </div>
@@ -112,30 +98,15 @@
           </div>
           <div class="card-body">
                 <form id="form-edit">
-                    <input type="hidden" id="edid" name="id">
-                    <label for="ednome_completo" class="form-label">Nome completo</label>
-                    <input type="text" class="form-control" id="ednome_completo" name="nome_completo" required>
-                    <label for="edcpf" class="form-label">CPF</label>
-                    <input type="text" class="form-control" id="edcpf" name="cpf">
-                    <label for="eddata_nascimento" class="form-label">Data de nascimento</label>
-                    <input type="date" class="form-control" id="eddata_nascimento" name="data_nascimento">
+                    <input type="hidden" id="edmatricula" name="matricula">
+                    <label for="ednome" class="form-label">Nome</label>
+                    <input type="text" class="form-control" id="ednome" name="nome" required>
                     <label for="edemail" class="form-label">Email</label>
                     <input type="email" class="form-control" id="edemail" name="email">
-                    <label for="edtelefone" class="form-label">Telefone</label>
-                    <input type="text" class="form-control" id="edtelefone" name="telefone">
-                    <label for="edendereco" class="form-label">Endereço</label>
-                    <input type="text" class="form-control" id="edendereco" name="endereco">
-                    <label for="edcidade" class="form-label">Cidade</label>
-                    <input type="text" class="form-control" id="edcidade" name="cidade">
-                    <label for="edestado" class="form-label">UF</label>
-                    <input type="text" class="form-control" id="edestado" name="estado" maxlength="2">
-                    <label for="edstatus" class="form-label">Status</label>
-                    <select name="status" id="edstatus" class="form-control">
-                        <option value="1">Ativo</option>
-                        <option value="0">Inativo</option>
-                    </select>
-                    <label for="edobservacoes" class="form-label">Observações</label>
-                    <textarea class="form-control" id="edobservacoes" name="observacoes" rows="3"></textarea>
+                    <label for="edcelular" class="form-label">Celular</label>
+                    <input type="text" class="form-control" id="edcelular" name="celular">
+                    <label for="eddata_nascimento" class="form-label">Data de nascimento</label>
+                    <input type="date" class="form-control" id="eddata_nascimento" name="data_nascimento">
                     <button type="button" id="btAlterarDados" class="w-100 btn btn-lg btn-outline-primary mt-3">Alterar</button>
                 </form>
           </div>
