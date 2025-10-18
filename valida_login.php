@@ -49,7 +49,7 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
             $stmt->execute([':data' => $data, ':hora' => $hora, ':host' => $host, ':usuario' => $usuario['idusuario']]);
         
             
-            header("Location: gestao_usuarios.php");
+            header("Location: dados_pessoais.php");
         }
         
     } else {

@@ -59,7 +59,7 @@ $(document).ready(function () {
     $('#btSalvarDados').on('click', function () {
         const dados = $('#form-create').serialize();
 
-        fetch('create_dados_pessoais.php', {
+        fetch('add_dados_pessoais.php', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
