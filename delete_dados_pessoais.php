@@ -2,17 +2,17 @@
 
 require 'database.php';
 
-$id = filter_input(INPUT_POST, 'id', FILTER_VALIDATE_INT);
+$matricula = filter_input(INPUT_POST, 'matricula', FILTER_VALIDATE_INT);
 
-if (!$id) {
+if (!$matricula) {
     http_response_code(400);
     echo json_encode(['error' => 'O identificador é obrigatório.']);
     exit;
 }
 
 try {
-    $stmt = $conn->prepare('DELETE FROM dados_pessoais WHERE id = :id');
-    $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+    $stmt = $conn->prepare('DELETE FROM DadosPessoais WHERE matricula = :matricula');
+    $stmt->bindParam(':matricula', $matricula, PDO::PARAM_INT);
     $stmt->execute();
 
     echo json_encode(['success' => true]);
